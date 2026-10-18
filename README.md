@@ -1,150 +1,301 @@
-CA Web Platform
-A web-based platform that connects clients with Chartered Accountants (CAs) and helps manage accounting-service workflows in one place. It provides separate client and CA portals for service requests, document management, communication, and task tracking.
-Configuration note: MongoDB, AWS S3, Cloudinary, and Stripe integrations require valid credentials and environment configuration. Some dashboard statistics are sample/mock values.
 
-Features
-Public Access
-- Landing page introducing the platform
-- User registration and login
-- Role-based routing for clients and CA accounts
-Client Portal
-- Client dashboard
-- Find a Chartered Accountant
-- Submit service requests and track their status
-- Upload and view documents
-- Access messages and conversations
-- Manage user profile
-CA Portal
-- CA dashboard with overview statistics and charts
-- Client management
-- Service-request management
-- Document management
-- Task management
-- Messaging and account settings
-Backend
-- REST API built with Express
-- JWT-protected routes
-- MongoDB persistence using Mongoose
-- Password hashing with bcryptjs
-- Financial and regulatory news aggregation using RSS feeds, with fallback news content
-- Payment-related routes configured for Stripe; the code also includes a simulated payment-completion route
-- Document-storage integrations for AWS S3 and Cloudinary
-- Security middleware using Helmet and API rate limiting
-Technology Stack
-Frontend
-- React 19
-- TypeScript
-- Vite
-- React Router
-- Recharts
-- Framer Motion
-- Lucide React
-- CSS
-Backend
-- Node.js
-- Express
-- MongoDB and Mongoose
-- JSON Web Tokens (JWT)
-- bcryptjs
-- rss-parser
-- Stripe SDK
-- AWS SDK for S3
-- Cloudinary
-- Helmet
-- express-rate-limit
-Project Structure
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{listings}
+\usepackage{parskip}
+
+\definecolor{primary}{RGB}{35,75,130}
+\definecolor{codebg}{RGB}{245,247,250}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primary,
+    urlcolor=blue,
+    pdftitle={CA Web Platform Documentation}
+}
+
+\titleformat{\section}
+  {\Large\bfseries\color{primary}}
+  {\thesection}{1em}{}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    backgroundcolor=\color{codebg},
+    frame=single,
+    breaklines=true,
+    columns=fullflexible
+}
+
+\title{
+    \textbf{\Huge CA Web Platform}\\[0.5cm]
+    \large Project Documentation
+}
+\author{Apurva Hippargi}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Project Overview}
+
+The CA Web Platform is a web-based application designed
+to connect clients with Chartered Accountants (CAs).
+It helps manage accounting-service workflows through
+separate client and CA portals.
+
+The platform supports service requests, document
+management, communication, and task tracking in one place.
+
+\section{Features}
+
+\subsection{Public Access}
+\begin{itemize}
+    \item Landing page introducing the platform.
+    \item User registration and login.
+    \item Role-based routing for clients and CA accounts.
+\end{itemize}
+
+\subsection{Client Portal}
+\begin{itemize}
+    \item Client dashboard.
+    \item Find a Chartered Accountant.
+    \item Submit service requests and track their status.
+    \item Upload and view documents.
+    \item Access messages and conversations.
+    \item Manage user profiles.
+\end{itemize}
+
+\subsection{CA Portal}
+\begin{itemize}
+    \item Dashboard with overview statistics and charts.
+    \item Client management.
+    \item Service-request management.
+    \item Document management.
+    \item Task management.
+    \item Messaging and account settings.
+\end{itemize}
+
+\subsection{Backend Services}
+\begin{itemize}
+    \item REST API built with Express.
+    \item JWT-protected routes.
+    \item MongoDB persistence using Mongoose.
+    \item Password hashing with bcryptjs.
+    \item Financial and regulatory news aggregation.
+    \item Stripe-configured payment routes.
+    \item AWS S3 and Cloudinary document-storage integrations.
+    \item Helmet security middleware and API rate limiting.
+\end{itemize}
+
+\section{Technology Stack}
+
+\subsection{Frontend}
+\begin{itemize}
+    \item React 19
+    \item TypeScript
+    \item Vite
+    \item React Router
+    \item Recharts
+    \item Framer Motion
+    \item Lucide React
+    \item CSS
+\end{itemize}
+
+\subsection{Backend}
+\begin{itemize}
+    \item Node.js
+    \item Express.js
+    \item MongoDB and Mongoose
+    \item JSON Web Tokens (JWT)
+    \item bcryptjs
+    \item rss-parser
+    \item Stripe SDK
+    \item AWS SDK for S3
+    \item Cloudinary
+    \item Helmet and express-rate-limit
+\end{itemize}
+
+\section{Project Structure}
+
+\begin{lstlisting}
 CA web pro/
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── context/
-│   │   ├── pages/
-│   │   │   ├── ca/
-│   │   │   └── user/
-│   │   ├── config/
-│   │   └── App.tsx
-│   ├── public/
-│   ├── package.json
-│   └── vite.config.ts
-└── backend/
-    ├── config/
-    ├── controllers/
-    ├── middleware/
-    ├── models/
-    ├── routes/
-    ├── index.js
-    └── package.json
-Prerequisites
-Install the following before running the application:
-- Node.js and npm
-- A MongoDB database
-- API credentials for any external services you want to enable (AWS S3, Stripe, or Cloudinary)
-Getting Started
+|-- frontend/
+|   |-- src/
+|   |   |-- components/
+|   |   |-- context/
+|   |   |-- pages/
+|   |   |   |-- ca/
+|   |   |   |-- user/
+|   |   |-- config/
+|   |   |-- App.tsx
+|   |-- public/
+|   |-- package.json
+|   |-- vite.config.ts
+|
+|-- backend/
+    |-- config/
+    |-- controllers/
+    |-- middleware/
+    |-- models/
+    |-- routes/
+    |-- index.js
+    |-- package.json
+\end{lstlisting}
+
+\section{Prerequisites}
+
+Before running the application, install:
+\begin{itemize}
+    \item Node.js and npm.
+    \item A MongoDB database.
+    \item Credentials for external services you want to enable,
+    such as AWS S3, Stripe, or Cloudinary.
+\end{itemize}
+
+\section{Installation and Setup}
+
 Run the frontend and backend in separate terminals.
-1. Set Up the Backend
+
+\subsection{Backend Setup}
+
+Navigate to the backend directory:
+
+\begin{lstlisting}
 cd "CA web pro/backend"
 npm install
-Create a .env file in the backend directory and configure the required values:
+\end{lstlisting}
+
+Create a \texttt{.env} file in the backend directory:
+
+\begin{lstlisting}
 PORT=5001
 JWT_SECRET=replace_with_a_long_random_secret
 MONGODB_URI=mongodb_connection_string
 
-# AWS S3 (if using S3 document uploads)
 AWS_ACCESS_KEY_ID=
 AWS_SECRET_ACCESS_KEY=
 AWS_REGION=
 AWS_S3_BUCKET=
 
-# Stripe (for Stripe payment flows/webhooks)
 STRIPE_SECRET_KEY=
 STRIPE_WEBHOOK_SECRET=
 
-# Cloudinary (if using the Cloudinary integration)
 CLOUDINARY_CLOUD_NAME=
 CLOUDINARY_API_KEY=
 CLOUDINARY_API_SECRET=
+\end{lstlisting}
+
 Start the backend:
+
+\begin{lstlisting}
 npm run dev
-The backend defaults to port 5001 unless PORT is set to a different value.
-2. Set Up the Frontend
+\end{lstlisting}
+
+The backend defaults to port 5001 unless another port
+is configured.
+
+\subsection{Frontend Setup}
+
 Open a second terminal:
+
+\begin{lstlisting}
 cd "CA web pro/frontend"
 npm install
-The frontend uses VITE_API_URL when it is set; otherwise, it falls back to http://localhost:5001.
-For local development, you can create a .env file in the frontend directory:
+\end{lstlisting}
+
+Create a frontend \texttt{.env} file if needed:
+
+\begin{lstlisting}
 VITE_API_URL=http://localhost:5001
+\end{lstlisting}
+
 Start the frontend:
+
+\begin{lstlisting}
 npm run dev
+\end{lstlisting}
+
 Vite will display the local development URL in the terminal.
-Build and Code Checks
+
+\section{Build and Code Checks}
+
 Run these commands from the frontend directory:
+
+\begin{lstlisting}
 npm run build
 npm run lint
-To preview a production build locally:
-npm run preview
-API Overview
-The backend mounts API routes under /api.
-Route Prefix	Purpose
-/api/auth	Registration and authentication
-/api/ca	CA-related operations
-/api/dashboard	Dashboard statistics
-/api/documents	Document operations
-/api/news	Financial and regulatory news
-/api/requests	Service requests
-/api/clients	Client management
-/api/chat	Messaging
-/api/payments	Payment-related operations
+\end{lstlisting}
 
+To preview the production build locally:
+
+\begin{lstlisting}
+npm run preview
+\end{lstlisting}
+
+\section{API Overview}
+
+The backend mounts its API routes under \texttt{/api}.
+
+\begin{itemize}
+    \item \texttt{/api/auth}: Registration and authentication.
+    \item \texttt{/api/ca}: CA-related operations.
+    \item \texttt{/api/dashboard}: Dashboard statistics.
+    \item \texttt{/api/documents}: Document operations.
+    \item \texttt{/api/news}: Financial and regulatory news.
+    \item \texttt{/api/requests}: Service requests.
+    \item \texttt{/api/clients}: Client management.
+    \item \texttt{/api/chat}: Messaging.
+    \item \texttt{/api/payments}: Payment-related operations.
+\end{itemize}
 
 Most account-specific endpoints require a valid bearer token.
-Security and Configuration Notes
-- Do not commit .env files, passwords, API keys, or other secrets to a public repository.
-- If real credentials were included in a shared ZIP or committed to Git, revoke or rotate them and remove them from repository history where appropriate.
-- Use a strong, private JWT_SECRET.
-- Configure CORS for trusted origins before deployment.
-- Test external-service configuration and payment/webhook behavior in a test environment before using real customer data or payments.
-- Dashboard statistics currently include sample/mock values; do not treat them as live business metrics unless connected to real data.
-Current Scope
-This repository contains a React/TypeScript frontend and a Node.js/Express backend. Some external services depend on environment configuration, and some dashboard values are mock data. Test the main user journeys and integrations in your environment before presenting the application as production-ready.
-License
-No project-specific license was identified in the available project files. Add a LICENSE file if you plan to distribute the project publicly.
+
+\section{Security Considerations}
+
+\begin{itemize}
+    \item Never commit \texttt{.env} files or API secrets
+    to a public repository.
+    \item Use a strong and private JWT secret.
+    \item Configure CORS for trusted origins.
+    \item Test payment integrations and webhooks before
+    using real customer data or payments.
+    \item Dashboard statistics include sample values and
+    should not be treated as live business metrics.
+\end{itemize}
+
+\section{Deployment Notes}
+
+The project contains a React/TypeScript frontend and a
+Node.js/Express backend.
+
+GitHub Pages can host the static frontend, but it cannot
+run the Express backend or MongoDB database. Deploy those
+services separately and configure the frontend API URL
+to point to the hosted backend.
+
+External integrations require valid credentials and
+appropriate environment configuration.
+
+\section{Conclusion}
+
+The CA Web Platform brings client and Chartered Accountant
+workflows into one application. It provides a foundation
+for managing service requests, documents, communication,
+and tasks. Complete configuration and testing are required
+before production use.
+
+\section{License}
+
+No project-specific license was identified in the
+available project documentation. Add a LICENSE file
+if you intend to distribute the project publicly.
+
+\end{document}
